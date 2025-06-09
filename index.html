@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ping Pong Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div id="menu" class="menu">
+            <h1>Пинг-Понг</h1>
+            <div class="menu-buttons">
+                <button id="vsAI" class="menu-button">Играть против компьютера</button>
+                <button id="vsPlayer" class="menu-button">Играть вдвоём</button>
+                <button id="vsOnline" class="menu-button">Играть по сети</button>
+            </div>
+        </div>
+        <div id="difficulty-menu" class="menu" style="display: none;">
+            <h2>Выберите сложность</h2>
+            <div class="menu-buttons">
+                <button id="easy" class="menu-button">Легкий</button>
+                <button id="medium" class="menu-button">Средний</button>
+                <button id="hard" class="menu-button">Сложный</button>
+                <button id="back-to-main" class="menu-button back-button">Назад</button>
+            </div>
+        </div>
+        <div id="online-menu" class="menu" style="display: none;">
+            <h2>Игра по сети</h2>
+            <div class="menu-buttons">
+                <button id="create-room" class="menu-button">Создать комнату</button>
+                <button id="join-room" class="menu-button">Присоединиться к комнате</button>
+                <button id="back-to-main-online" class="menu-button back-button">Назад</button>
+            </div>
+        </div>
+        <div id="room-menu" class="menu" style="display: none;">
+            <div class="room-info">
+                <span>ID комнаты: <strong id="room-id"></strong></span>
+                <span>Статус: <strong id="room-status">Ожидание игрока...</strong></span>
+            </div>
+            <div class="menu-buttons">
+                <button id="copy-link" class="menu-button">Скопировать ссылку</button>
+                <button id="leave-room" class="menu-button back-button">Покинуть комнату</button>
+            </div>
+        </div>
+        <div id="join-menu" class="menu" style="display: none;">
+            <h2>Присоединиться к комнате</h2>
+            <div class="join-form">
+                <input type="text" id="room-input" placeholder="Введите ID комнаты">
+                <button id="join-button" class="menu-button">Присоединиться</button>
+            </div>
+            <button id="back-to-online" class="menu-button back-button">Назад</button>
+        </div>
+        <div id="game" style="display: none;">
+            <div class="score-board">
+                <span id="player-score">0</span>
+                <span id="computer-score">0</span>
+            </div>
+            <button id="startGameButton" class="menu-button" style="margin-bottom: 1rem;">Начать игру</button>
+            <canvas id="gameCanvas"></canvas>
+            <div id="controls-text" class="controls-text"></div>
+            <button id="backToMenu" class="menu-button back-button">Вернуться в меню</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
