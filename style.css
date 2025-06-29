@@ -347,18 +347,19 @@ body::before {
         right: 0;
         bottom: 24px;
         justify-content: center;
-        gap: 32px;
+        gap: 48px;
         z-index: 1000;
     }
     .touch-controls button {
-        font-size: 2.2rem;
-        padding: 1.2rem 2.5rem;
-        border-radius: 18px;
+        font-size: 3rem;
+        padding: 2rem 3.5rem;
+        border-radius: 24px;
         background: var(--primary-color);
         color: #fff;
         border: none;
         box-shadow: 0 4px 16px rgba(0,0,0,0.18);
         font-weight: bold;
+        touch-action: manipulation;
     }
     .game-container {
         padding: 0.5rem;

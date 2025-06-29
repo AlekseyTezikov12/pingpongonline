@@ -635,3 +635,30 @@ function updateScore(isPlayer) {
     }
     resetGame();
 }
+
+function resizeCanvas() {
+    // Для мобильных — ширина 100vw, высота 60vw, но не больше 800x500
+    let width = Math.min(window.innerWidth, 800);
+    let height = Math.min(window.innerHeight * 0.7, 500);
+    if (window.innerWidth < 900) {
+        width = window.innerWidth;
+        height = window.innerWidth * 0.6;
+    }
+    // Для Retina и чёткости
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    ctx.setTransform(1, 0, 0, 1, 0, 0); // сброс трансформаций
+    ctx.scale(dpr, dpr);
+    // Пересчитать координаты объектов относительно нового размера
+    // Центрируем объекты
+    player.y = canvas.height / dpr / 2 - player.height / 2;
+    computer.y = canvas.height / dpr / 2 - computer.height / 2;
+    ball.x = canvas.width / dpr / 2;
+    ball.y = canvas.height / dpr / 2;
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
