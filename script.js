@@ -29,6 +29,8 @@ const mediumButton = document.getElementById('medium');
 const hardButton = document.getElementById('hard');
 const backToMainButton = document.getElementById('back-to-main');
 const startGameButton = document.getElementById('startGameButton');
+const touchUpBtn = document.getElementById('touch-up');
+const touchDownBtn = document.getElementById('touch-down');
 
 // Set canvas size
 canvas.width = 800;
@@ -74,6 +76,7 @@ let difficulty = ''; // 'easy', 'medium', 'hard'
 let ws = null;
 let isHost = false;
 let roomId = '';
+let touchMoveDirection = null;
 
 // Event listeners
 document.addEventListener('keydown', handleKeyDown);
@@ -102,6 +105,25 @@ startGameButton.addEventListener('click', () => {
     gameStarted = true;
     gameLoop();
 });
+
+if (touchUpBtn && touchDownBtn) {
+    touchUpBtn.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        touchMoveDirection = 'up';
+    });
+    touchUpBtn.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        touchMoveDirection = null;
+    });
+    touchDownBtn.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        touchMoveDirection = 'down';
+    });
+    touchDownBtn.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        touchMoveDirection = null;
+    });
+}
 
 // Key states
 const keys = {
@@ -379,6 +401,14 @@ function update() {
         }
         if (keys.arrowdown && computer.y + computer.height < canvas.height) {
             computer.y += computer.dy;
+        }
+    }
+
+    if (gameMode !== 'online') {
+        if (touchMoveDirection === 'up') {
+            player.y -= player.dy;
+        } else if (touchMoveDirection === 'down') {
+            player.y += player.dy;
         }
     }
 

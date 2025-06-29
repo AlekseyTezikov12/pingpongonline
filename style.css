@@ -335,3 +335,43 @@ body::before {
         height: auto;
     }
 }
+
+.touch-controls {
+    display: none;
+}
+@media (max-width: 900px) {
+    .touch-controls {
+        display: flex;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 24px;
+        justify-content: center;
+        gap: 32px;
+        z-index: 1000;
+    }
+    .touch-controls button {
+        font-size: 2.2rem;
+        padding: 1.2rem 2.5rem;
+        border-radius: 18px;
+        background: var(--primary-color);
+        color: #fff;
+        border: none;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+        font-weight: bold;
+    }
+    .game-container {
+        padding: 0.5rem;
+        min-width: unset;
+        width: 100vw;
+        border-radius: 0;
+    }
+    #gameCanvas {
+        width: 100vw !important;
+        height: 60vw !important;
+        max-width: 100vw;
+        max-height: 70vw;
+        display: block;
+        margin: 0 auto;
+    }
+}
