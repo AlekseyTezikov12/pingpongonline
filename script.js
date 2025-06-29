@@ -31,6 +31,9 @@ const backToMainButton = document.getElementById('back-to-main');
 const startGameButton = document.getElementById('startGameButton');
 const touchUpBtn = document.getElementById('touch-up');
 const touchDownBtn = document.getElementById('touch-down');
+const deviceSelect = document.getElementById('device-select');
+const chooseMobile = document.getElementById('choose-mobile');
+const chooseDesktop = document.getElementById('choose-desktop');
 
 // Set canvas size
 canvas.width = 800;
@@ -658,7 +661,39 @@ function resizeCanvas() {
     computer.y = canvas.height / dpr / 2 - computer.height / 2;
     ball.x = canvas.width / dpr / 2;
     ball.y = canvas.height / dpr / 2;
+    resetScores();
+    resetGame();
 }
 
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
+
+function showDeviceSelect() {
+    deviceSelect.style.display = 'flex';
+}
+function hideDeviceSelect() {
+    deviceSelect.style.display = 'none';
+}
+function setDeviceType(type) {
+    if (type === 'mobile') {
+        document.body.classList.add('show-touch-controls');
+    } else {
+        document.body.classList.remove('show-touch-controls');
+    }
+    localStorage.setItem('deviceType', type);
+}
+if (!localStorage.getItem('deviceType')) {
+    showDeviceSelect();
+} else {
+    setDeviceType(localStorage.getItem('deviceType'));
+}
+if (chooseMobile && chooseDesktop) {
+    chooseMobile.onclick = function() {
+        setDeviceType('mobile');
+        hideDeviceSelect();
+    };
+    chooseDesktop.onclick = function() {
+        setDeviceType('desktop');
+        hideDeviceSelect();
+    };
+}
